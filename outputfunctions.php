@@ -298,16 +298,19 @@ function probgraph ($num_times, $force, $units, $lost, $cost, $median, $stdev1, 
 	return $result;
 }
 
+
 //creates the URL link for running the same battle with units and options set
 function scenariolink ($type) {
-	global $pageurl, $forces;
+	global $pageurl, $forces, $url;
 	$url=$pageurl.'?';
 	foreach ($_REQUEST as $key => $value) { if ($key !== 'pbem') $url.="$key=$value&";
 	};
 	$url.='pbem=';
-	$link='<a href="'.$url.'">Link to or bookmark this scenario</a>.';
-#	if ($type='mail') $link .= ' <span class="noshow">Full address: '.$url.'</span>';
-	return $link;
+	$staticname = time('U').md5($url).'.html';
+	$customdir = 'b';
+	file_put_contents($customdir.'/'.$staticname,"<meta http-equiv='refresh' content='0;url=".$url."' />");
+	return '<br><input type="text" size="75" value="'.$pageurl.'/'.$customdir.'/'.$staticname.'" ><br />';
+
 }
 
 //keeps track of battle result(s) and displays them...this is the main function called by index.php file to display results
@@ -505,4 +508,7 @@ function nobattle () {
 	<li>Attacker has combination of artillery and advanced artillery, subs and super subs, fighters and jet fighters, or bombers and heavy bombers.</li>
 	</ul>';
 }
+
+
 ?>
+
