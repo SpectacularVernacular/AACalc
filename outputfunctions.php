@@ -306,13 +306,11 @@ function scenariolink ($type) {
 	foreach ($_REQUEST as $key => $value) { if ($key !== 'pbem') $url.="$key=$value&";
 	};
 	$url.='pbem=';
-	$foo = $url;
-	$newname = time('U').md5($pageurl).'.html';
-	$domainname = '';
+	$staticname = time('U').md5($url).'.html';
 	$customdir = 'b';
-	file_put_contents($customdir.'/'.$newname,"<meta http-equiv='refresh' content='0;url=".$domainname."/index.php".$foo."' />");
-	return '<br><input type="text" size="75" value="'.$domainname.'/'.$customdir.'/'.$newname.'" ><br />';
-#	if ($type='mail') $link .= ' <span class="noshow">Full address: '.$url.'</span>';
+	file_put_contents($customdir.'/'.$staticname,"<meta http-equiv='refresh' content='0;url=".$url."' />");
+	return '<br><input type="text" size="75" value="'.$pageurl.'/'.$customdir.'/'.$staticname.'" ><br />';
+
 }
 
 //keeps track of battle result(s) and displays them...this is the main function called by index.php file to display results
