@@ -308,6 +308,11 @@ function scenariolink ($type) {
 	$url.='pbem=';
 	$staticname = time('U').md5($url).'.html';
 	$customdir = 'b';
+
+	if (!file_exists($customdir)) {
+		mkdir ($customdir);
+	}
+
 	file_put_contents($customdir.'/'.$staticname,"<meta http-equiv='refresh' content='0;url=".$url."' />");
 	return '<br><input type="text" size="75" value="'.$pageurl.'/'.$customdir.'/'.$staticname.'" ><br />';
 
