@@ -311,7 +311,7 @@ function scenariolink ($type) {
 	$domainname = '';
 	$customdir = 'b';
 	file_put_contents($customdir.'/'.$newname,"<meta http-equiv='refresh' content='0;url=".$domainname."/index.php".$foo."' />");
-	print('<input type="text" size="75" value="'.$domainname.'/'.$customdir.'/'.$newname.'" ><br /><br />');//currently unknown why this double-displays at the top, and removes the bottom one
+	return '<br><input type="text" size="75" value="'.$domainname.'/'.$customdir.'/'.$newname.'" ><br />';
 #	if ($type='mail') $link .= ' <span class="noshow">Full address: '.$url.'</span>';
 }
 
