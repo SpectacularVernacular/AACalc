@@ -298,14 +298,18 @@ function probgraph ($num_times, $force, $units, $lost, $cost, $median, $stdev1, 
 	return $result;
 }
 
+
 //creates the URL link for running the same battle with units and options set
 function scenariolink ($type) {
-	global $pageurl, $forces;
+	global $pageurl, $forces, $url;
 	$url=$pageurl.'?';
 	foreach ($_REQUEST as $key => $value) { if ($key !== 'pbem') $url.="$key=$value&";
 	};
 	$url.='pbem=';
-	$link='<a href="'.$url.'">Link to or bookmark this scenario</a>.';
+	$foo = $url;
+	$newname = time('U').md5($pageurl).'.html';
+	file_put_contents('battle/'.$newname,"<meta http-equiv='refresh' content='0;url=https://prts.cr/calc/index.php".$foo."' />");
+	$link='<a href="battle/'.$newname.'">Link to or bookmark this scenario</a>.';
 #	if ($type='mail') $link .= ' <span class="noshow">Full address: '.$url.'</span>';
 	return $link;
 }
@@ -505,4 +509,6 @@ function nobattle () {
 	<li>Attacker has combination of artillery and advanced artillery, subs and super subs, fighters and jet fighters, or bombers and heavy bombers.</li>
 	</ul>';
 }
+
+
 ?>
